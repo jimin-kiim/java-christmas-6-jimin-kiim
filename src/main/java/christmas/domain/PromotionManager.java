@@ -8,4 +8,13 @@ public class PromotionManager {
             reservation.setGift(new OrderItem(Menu.CHAMPAGNE.getName(), 1));
         }
     }
+
+    public void applyDdayEvent(Reservation reservation) {
+        int visitDate = reservation.getVisitDate();
+        if (visitDate <= 25) {
+            int promotionAmount = 1000;
+            promotionAmount += (visitDate - 1) * 100;
+            reservation.addAppliedPromotionList(new Promotion("크리스마스 디데이 할인", promotionAmount));
+        }
+    }
 }

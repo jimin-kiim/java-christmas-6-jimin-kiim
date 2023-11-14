@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class Reservation {
-    private VisitDate visitDate;
+    private int visitDate;
     private List<OrderItem> orderItemList;
     private int prePromotionTotal = 0;
     private int postPromotionTotal = 0;
@@ -14,7 +14,7 @@ public class Reservation {
     private List<Promotion> promotionList;
     private OrderItem gift = null;
 
-    public void storeVisitDate(VisitDate visitDate) {
+    public void storeVisitDate(int visitDate) {
         this.visitDate = visitDate;
     }
 
@@ -55,5 +55,13 @@ public class Reservation {
 
     public OrderItem getGift() {
         return gift;
+    }
+
+    public int getVisitDate() {
+        return visitDate;
+    }
+
+    public List<Promotion> getPromotionList() {
+        return promotionList;
     }
 }

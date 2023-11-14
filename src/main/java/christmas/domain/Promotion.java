@@ -12,4 +12,8 @@ public class Promotion {
     public int getAmount() {
         return amount;
     }
+
+    public String getName() {
+        return name;
+    }
 }

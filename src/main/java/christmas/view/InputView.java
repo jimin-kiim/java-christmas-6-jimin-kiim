@@ -1,7 +1,6 @@
 package christmas.view;
 
 import christmas.domain.OrderItem;
-import christmas.domain.VisitDate;
 import christmas.messages.ErrorMessage;
 import christmas.validator.Validator;
 
@@ -12,7 +11,7 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class InputView {
-    public static VisitDate getVisitDate() {
+    public static int getVisitDate() {
         String input;
         boolean isValid;
         do {
@@ -26,7 +25,7 @@ public class InputView {
             }
         } while (!isValid);
 
-        return new VisitDate(Integer.parseInt(input));
+        return Integer.parseInt(input);
     }
 
     public static List<OrderItem> getOrder() {
@@ -59,6 +58,4 @@ public class InputView {
         }
         return orderItemList;
     }
-
-
 }

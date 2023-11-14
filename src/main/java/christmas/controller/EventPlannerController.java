@@ -1,9 +1,9 @@
 package christmas.controller;
 
 import christmas.domain.OrderItem;
+import christmas.domain.Promotion;
 import christmas.domain.PromotionManager;
 import christmas.domain.Reservation;
-import christmas.domain.VisitDate;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 
@@ -24,7 +24,7 @@ public class EventPlannerController {
         OutputView.printWelcomingMessage();
 
         OutputView.askVisitDate();
-        VisitDate visitDate = InputView.getVisitDate();
+        int visitDate = InputView.getVisitDate();
         reservation.storeVisitDate(visitDate);
 
         OutputView.askOrder();
@@ -36,7 +36,7 @@ public class EventPlannerController {
         PromotionManager promotionManager = new PromotionManager();
 
         promotionManager.applyGiftEvent(reservation);
-//        promotionManager.applyDdayEvent(reservation);
+        promotionManager.applyDdayEvent(reservation);
 //        promotionManager.applyWeekdayEvent(reservation);
 //        promotionManager.applyWeekendEvent(reservation);
 //        promotionManager.applyStarredDayEvent(reservation);
@@ -70,7 +70,8 @@ public class EventPlannerController {
     }
 
     private void showAppliedPromotionEvents() {
-
+        List<Promotion> promotionList = reservation.getPromotionList();
+        OutputView.printPromotionList(promotionList);
     }
 
     private void showTotalAppliedPromotionAmount() {

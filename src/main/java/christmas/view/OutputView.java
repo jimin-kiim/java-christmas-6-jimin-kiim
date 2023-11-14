@@ -1,7 +1,10 @@
 package christmas.view;
 
 import christmas.domain.OrderItem;
+import christmas.domain.Promotion;
 import christmas.messages.Message;
+
+import java.util.List;
 
 public class OutputView {
     private static void print(String message) {
@@ -38,6 +41,22 @@ public class OutputView {
             print(name + " " + amount +"개");
         }
         if (gift == null) {
+            print("없음");
+        }
+    }
+
+    public static void printPromotionList(List<Promotion> promotionList) {
+        print(Message.PROMOTION_LIST_TITLE.getMessage());
+        if (promotionList.size() != 0) {
+            for (Promotion promotion: promotionList) {
+                String name = promotion.getName();
+                int amount = promotion.getAmount();
+                String outputAmount = Integer.toString(amount);
+                outputAmount = outputAmount.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
+                print(name + ": -" + outputAmount + "원");
+            }
+        }
+        if (promotionList.size() == 0) {
             print("없음");
         }
     }
