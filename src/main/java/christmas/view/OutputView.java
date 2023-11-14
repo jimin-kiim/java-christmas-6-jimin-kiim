@@ -24,9 +24,11 @@ public class OutputView {
     }
 
     public static void printPromotionViewTitle() {
+        print(Message.PROMOTION_VIEW_TITLE.getMessage());
     }
 
     public static void printOrderList(List<OrderItem> orderItemList) {
+        print("");
         print(Message.ORDER_LIST_TITLE.getMessage());
         for (OrderItem item: orderItemList) {
             print(item.getName() + " " + item.getAmount() + "개");
@@ -34,6 +36,7 @@ public class OutputView {
     }
 
     public static void printPrePromotionTotal(int prePromotionTotal) {
+        print("");
         print(Message.PRE_PROMOTION_TOTAL_TITLE.getMessage());
         String output = Integer.toString(prePromotionTotal);
         output = output.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
@@ -41,6 +44,7 @@ public class OutputView {
     }
 
     public static void printGiftMenu(OrderItem gift) {
+        print("");
         print(Message.GIFT_TITLE.getMessage());
         if (gift != null) {
             String name = gift.getName();
@@ -53,6 +57,7 @@ public class OutputView {
     }
 
     public static void printPromotionList(List<Promotion> promotionList) {
+        print("");
         print(Message.PROMOTION_LIST_TITLE.getMessage());
         if (promotionList.size() != 0) {
             for (Promotion promotion: promotionList) {
@@ -69,13 +74,19 @@ public class OutputView {
     }
 
     public static void printTotalPromotionAmount(int amount) {
+        print("");
         print(Message.TOTAL_PROMOTION_AMOUNT_TITLE.getMessage());
         String outputAmount = Integer.toString(amount);
         outputAmount = outputAmount.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
-        print("-" + outputAmount + "원");
+        if (amount > 0 ) {
+            print("-" + outputAmount + "원");
+            return;
+        }
+        print(outputAmount + "원");
     }
 
     public static void printPostPromotionTotal(int amount) {
+        print("");
         print(Message.POST_PROMOTION_TOTAL_TITLE.getMessage());
         String outputAmount = Integer.toString(amount);
         outputAmount = outputAmount.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
@@ -83,6 +94,7 @@ public class OutputView {
     }
 
     public static void printBadge(String badge) {
+        print("");
         print(Message.BADGE_TITLE.getMessage());
         if (badge == null) {
             print("없음");
