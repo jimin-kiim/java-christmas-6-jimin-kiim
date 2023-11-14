@@ -4,6 +4,7 @@ import christmas.domain.OrderItem;
 import christmas.domain.PromotionManager;
 import christmas.domain.Reservation;
 import christmas.domain.VisitDate;
+import christmas.view.InputView;
 import christmas.view.OutputView;
 
 import java.util.List;
@@ -18,7 +19,17 @@ public class EventPlannerController {
     }
 
     private void getReservation() {
+        reservation = new Reservation();
 
+        OutputView.printWelcomingMessage();
+
+        OutputView.askVisitDate();
+        VisitDate visitDate = InputView.getVisitDate();
+//        reservation.storeVisitDate(visitDate);
+
+//        OutputView.askOrder();
+//        List<OrderItem> order = InputView.getOrder();
+//        reservation.storeOrder(order);
     }
 
     private void applyPromotion() {
