@@ -8,4 +8,12 @@ public class OrderItem {
         this.name = name;
         this.amount = amount;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
 }

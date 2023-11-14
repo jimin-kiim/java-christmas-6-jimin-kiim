@@ -28,12 +28,19 @@ public class EventPlannerController {
         reservation.storeVisitDate(visitDate);
 
         OutputView.askOrder();
-        List<OrderItem> order = InputView.getOrder();
-//        reservation.storeOrder(order);
+        List<OrderItem> orderItemList = InputView.getOrder();
+        reservation.storeOrder(orderItemList);
     }
 
     private void applyPromotion() {
+        PromotionManager promotionManager = new PromotionManager();
 
+//        promotionManager.applyGiftEvent(reservation);
+//        promotionManager.applyDdayEvent(reservation);
+//        promotionManager.applyWeekdayEvent(reservation);
+//        promotionManager.applyWeekendEvent(reservation);
+//        promotionManager.applyStarredDayEvent(reservation);
+//        promotionManager.applyBadgeEvent(reservation);
     }
 
     private void showReservationWithBenefits() {
@@ -53,7 +60,8 @@ public class EventPlannerController {
     }
 
     private void showTotalPriceBeforePromotion() {
-
+        int prePromotionTotal = reservation.getPrePromotionTotal();
+        OutputView.printPrePromotionTotal(prePromotionTotal);
     }
 
     private void showGiftMenus() {

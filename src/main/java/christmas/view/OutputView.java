@@ -1,10 +1,6 @@
 package christmas.view;
 
-import christmas.domain.OrderItem;
-import christmas.domain.VisitDate;
 import christmas.messages.Message;
-
-import java.util.List;
 
 public class OutputView {
     private static void print(String message) {
@@ -24,5 +20,12 @@ public class OutputView {
     }
 
     public static void printPromotionViewTitle() {
+    }
+
+    public static void printPrePromotionTotal(int prePromotionTotal) {
+        print(Message.PRE_PROMOTION_TOTAL_TITLE.getMessage());
+        String output = Integer.toString(prePromotionTotal);
+        output = output.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
+        print(output+"원");
     }
 }
