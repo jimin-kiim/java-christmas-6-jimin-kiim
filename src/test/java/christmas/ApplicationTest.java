@@ -26,6 +26,26 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void 할인_전_총_주문_금액() {
+        assertSimpleTest(() -> {
+            run("3", "타파스-1,제로콜라-1");
+            assertThat(output()).contains(
+                    "8,500원"
+            );
+        });
+    }
+
+    @Test
+    void 할인_전_총_주문_금액_2() {
+        assertSimpleTest(() -> {
+            run("3", "티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1");
+            assertThat(output()).contains(
+                    "142,000원"
+            );
+        });
+    }
+
+    @Test
     void 혜택_내역_없음_출력() {
         assertSimpleTest(() -> {
             run("26", "타파스-1,제로콜라-1");
