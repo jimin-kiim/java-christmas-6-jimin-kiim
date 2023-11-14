@@ -77,4 +77,8 @@ public class Reservation {
     public void setBadge(String badge) {
         this.badge = badge;
     }
+
+    public int getPostPromotionTotal() {
+        return postPromotionTotal;
+    }
 }

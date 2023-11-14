@@ -51,7 +51,7 @@ public class EventPlannerController {
         showGiftMenus();
         showAppliedPromotionEvents();
         showTotalAppliedPromotionAmount();
-        showTotalPriceAfterPromotion();
+        showPostPromotionTotal();
         showEventBadges();
     }
 
@@ -81,8 +81,9 @@ public class EventPlannerController {
 
     }
 
-    private void showTotalPriceAfterPromotion () {
-
+    private void showPostPromotionTotal () {
+        int postPromotionTotal = reservation.getPostPromotionTotal();
+        OutputView.printPostPromotionTotal(postPromotionTotal);
     }
 
     private void showEventBadges() {

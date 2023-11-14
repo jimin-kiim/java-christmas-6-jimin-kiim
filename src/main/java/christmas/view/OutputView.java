@@ -74,4 +74,11 @@ public class OutputView {
         outputAmount = outputAmount.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
         print("-" + outputAmount + "원");
     }
+
+    public static void printPostPromotionTotal(int amount) {
+        print(Message.POST_PROMOTION_TOTAL_TITLE.getMessage());
+        String outputAmount = Integer.toString(amount);
+        outputAmount = outputAmount.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
+        print(outputAmount + "원");
+    }
 }
