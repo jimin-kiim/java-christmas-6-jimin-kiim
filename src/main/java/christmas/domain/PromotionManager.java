@@ -30,9 +30,6 @@ public class PromotionManager {
 
     public void applyWeekdayEvent(Reservation reservation) {
         int visitDate = reservation.getVisitDate();
-        if (!weekdays.contains(visitDate)) {
-            return;
-        }
         List<OrderItem> orderItemList = reservation.getOrderItemList();
         List<String> dessertNames = Arrays.stream(Menu.values())
                 .filter(m -> m.getType().equals("디저트"))
@@ -44,6 +41,28 @@ public class PromotionManager {
                 promotionAmount += 2023 * orderItemList.get(i).getAmount();
             }
         }
+        if (!weekdays.contains(visitDate) || promotionAmount == 0) {
+            return;
+        }
         reservation.addAppliedPromotionList(new Promotion("평일 할인", promotionAmount));
+    }
+
+    public void applyWeekendEvent(Reservation reservation) {
+        int visitDate = reservation.getVisitDate();
+        List<OrderItem> orderItemList = reservation.getOrderItemList();
+        List<String> mainNames = Arrays.stream(Menu.values())
+                .filter(m -> m.getType().equals("메인"))
+                .map(m -> m.getName())
+                .toList();
+        int promotionAmount = 0;
+        for (int i = 0; i < orderItemList.size(); i++) {
+            if (mainNames.contains(orderItemList.get(i).getName())) {
+                promotionAmount += 2023 * orderItemList.get(i).getAmount();
+            }
+        }
+        if (weekdays.contains(visitDate) || promotionAmount == 0) {
+            return;
+        }
+        reservation.addAppliedPromotionList(new Promotion("주말 할인", promotionAmount));
     }
 }
