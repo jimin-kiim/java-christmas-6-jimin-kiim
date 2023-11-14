@@ -7,7 +7,8 @@ public enum Message {
     ORDER_LIST_TITLE("<주문 메뉴>"),
     PRE_PROMOTION_TOTAL_TITLE("<할인 전 총주문 금액>"),
     GIFT_TITLE("<증정 메뉴>"),
-    PROMOTION_LIST_TITLE("<혜택 내역>");
+    PROMOTION_LIST_TITLE("<혜택 내역>"),
+    TOTAL_PROMOTION_AMOUNT_TITLE("<총혜택 금액>");
 
     private String message;
 

@@ -67,4 +67,11 @@ public class OutputView {
             print("없음");
         }
     }
+
+    public static void printTotalPromotionAmount(int amount) {
+        print(Message.TOTAL_PROMOTION_AMOUNT_TITLE.getMessage());
+        String outputAmount = Integer.toString(amount);
+        outputAmount = outputAmount.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
+        print("-" + outputAmount + "원");
+    }
 }

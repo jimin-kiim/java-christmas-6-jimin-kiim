@@ -76,6 +76,8 @@ public class EventPlannerController {
     }
 
     private void showTotalAppliedPromotionAmount() {
+        int totalPromotionAmount = reservation.getTotalPromotionAmount();
+        OutputView.printTotalPromotionAmount(totalPromotionAmount);
 
     }
 
