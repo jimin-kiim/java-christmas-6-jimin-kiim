@@ -16,6 +16,9 @@ public class InputView {
         do {
             input = readLine();
             isValid = Validator.isInt(input);
+            if (isValid) {
+                isValid = Validator.validateDateRange(Integer.parseInt(input));
+            }
             if (!isValid) {
                 System.out.println(ErrorMessage.INVALID_DATE.getMessage());
             }

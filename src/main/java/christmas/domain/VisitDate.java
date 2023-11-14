@@ -7,10 +7,10 @@ public class VisitDate {
 
     public VisitDate (int visitDate) {
         visitDate = this.visitDate;
-        validate(visitDate);
+//        validate(visitDate);
     }
 
     private void validate (int visitDate) {
-        Validator.validateDateRange();
+//        Validator.validateDateRange(visitDate);
     }
 }
