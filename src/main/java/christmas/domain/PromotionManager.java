@@ -11,6 +11,8 @@ public class PromotionManager {
             17, 18, 19, 20, 21,
             24, 25, 26, 27, 28,
             31));
+    private List<Integer> starredDays = new ArrayList<>(Arrays.asList(3, 10, 17, 24, 31));
+
     public void applyGiftEvent(Reservation reservation) {
         int prePromotionTotal = reservation.getPrePromotionTotal();
         if (prePromotionTotal >= 120000) {
@@ -60,5 +62,12 @@ public class PromotionManager {
             }
         }
         return promotionAmount;
+    }
+
+    public void applyStarredDayEvent(Reservation reservation) {
+        int visitDate = reservation.getVisitDate();
+        if (starredDays.contains(visitDate)) {
+            reservation.addAppliedPromotionList(new Promotion("특별 할인", 1000));
+        }
     }
 }
