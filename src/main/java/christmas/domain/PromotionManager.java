@@ -70,4 +70,19 @@ public class PromotionManager {
             reservation.addAppliedPromotionList(new Promotion("특별 할인", 1000));
         }
     }
+
+    public void applyBadgeEvent(Reservation reservation) {
+        int totalPromotionAmount = reservation.getTotalPromotionAmount();
+        if (totalPromotionAmount >= 20000) {
+            reservation.setBadge("산타");
+            return;
+        }
+        if (totalPromotionAmount >= 10000) {
+            reservation.setBadge("트리");
+            return;
+        }
+        if (totalPromotionAmount >= 5000) {
+            reservation.setBadge("별");
+        }
+    }
 }

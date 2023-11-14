@@ -40,7 +40,7 @@ public class EventPlannerController {
         promotionManager.applyWeekdayEvent(reservation);
         promotionManager.applyWeekendEvent(reservation);
         promotionManager.applyStarredDayEvent(reservation);
-//        promotionManager.applyBadgeEvent(reservation);
+        promotionManager.applyBadgeEvent(reservation);
     }
 
     private void showReservationWithBenefits() {

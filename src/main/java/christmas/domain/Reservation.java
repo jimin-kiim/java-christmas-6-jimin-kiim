@@ -13,6 +13,7 @@ public class Reservation {
     private int totalPromotionAmount = 0;
     private List<Promotion> promotionList;
     private OrderItem gift = null;
+    private String badge = null;
 
     public void storeVisitDate(int visitDate) {
         this.visitDate = visitDate;
@@ -67,5 +68,13 @@ public class Reservation {
 
     public List<OrderItem> getOrderItemList() {
         return orderItemList;
+    }
+
+    public int getTotalPromotionAmount() {
+        return totalPromotionAmount;
+    }
+
+    public void setBadge(String badge) {
+        this.badge = badge;
     }
 }
