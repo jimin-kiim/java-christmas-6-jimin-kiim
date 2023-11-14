@@ -32,13 +32,16 @@ public class Validator {
         List<String> orders = Arrays.asList(input.split("\\s*,\\s*"));
         List<String> menuAndQuantity;
         List<String> menuNames = new ArrayList<>();
+        int totalQuantity = 0;
         for (String order: orders) {
             menuAndQuantity = Arrays.asList(order.split("\\s*-\\s*"));
             isValid = Validator.validateMenuAndQuantity(menuAndQuantity);
             if (!isValid) return false;
             menuNames.add(menuAndQuantity.get(0));
+            totalQuantity += Integer.parseInt(menuAndQuantity.get(1));
         }
         validateDuplicateMenu(menuNames);
+        if (!validateTotalQuantity(totalQuantity)) return false;
         return true;
     }
 
@@ -78,6 +81,8 @@ public class Validator {
         if (menuNames.size() == menuNames.stream().distinct().count()) {
             return false;
         }
+    private static boolean validateTotalQuantity(int totalQuantity) {
+        if (totalQuantity > 20) return false;
         return true;
     }
 }
