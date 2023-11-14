@@ -12,15 +12,14 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class InputView {
     public static int getVisitDate() {
-        String input;
-        boolean isValid;
+        String input = "";
+        boolean isValid = false;
         do {
-            input = readLine();
-            isValid = Validator.validateIsInt(input);
-            if (isValid) {
+            try {
+                input = readLine();
+                Validator.validateIsInt(input);
                 isValid = Validator.validateDateRange(Integer.parseInt(input));
-            }
-            if (!isValid) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(ErrorMessage.INVALID_DATE.getMessage());
             }
         } while (!isValid);
@@ -30,16 +29,14 @@ public class InputView {
 
     public static List<OrderItem> getOrder() {
         String input;
-        boolean isValid;
-        List<OrderItem> orderItemList;
+        boolean isValid = false;
+        List<OrderItem> orderItemList = new ArrayList<>();
         do {
-            orderItemList = new ArrayList<>();
-            input = readLine();
-            isValid = Validator.validateOrder(input);
-            if (isValid) {
-                orderItemList = processInput(input);
-            }
-            if (!isValid) {
+            try {
+                input = readLine();
+                isValid = Validator.validateOrder(input);
+                if (isValid) orderItemList = processInput(input);
+            } catch (IllegalArgumentException e) {
                 System.out.println(ErrorMessage.INVALID_ORDER.getMessage());
             }
         } while (!isValid);

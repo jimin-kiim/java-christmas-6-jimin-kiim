@@ -1,7 +1,6 @@
 package christmas.validator;
 
 import christmas.domain.Menu;
-import christmas.domain.OrderItem;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,16 +11,15 @@ public class Validator {
         if (input != null && input.matches("^[0-9]+$")) {
             return true;
         }
-        return false;
+        throw new IllegalArgumentException();
     }
 
     public static boolean validateDateRange(int input) {
         if (0 < input && input < 32) {
             return true;
         }
-        return false;
+        throw new IllegalArgumentException();
     }
-
 
     public static boolean validateOrder(String input) {
         List<String> orders = Arrays.asList(input.split("\\s*,\\s*"));
@@ -30,12 +28,14 @@ public class Validator {
         int totalQuantity = 0;
         for (String order: orders) {
             menuAndQuantity = Arrays.asList(order.split("\\s*-\\s*"));
-            if(!Validator.validateMenuAndQuantity(menuAndQuantity)) return false;
+            if(!Validator.validateMenuAndQuantity(menuAndQuantity)) {
+                throw new IllegalArgumentException();
+            }
             menuNames.add(menuAndQuantity.get(0));
             totalQuantity += Integer.parseInt(menuAndQuantity.get(1));
         }
-        if (!validateDuplicateMenu(menuNames)) return false;
-        if (!validateTotalQuantity(totalQuantity)) return false;
+        if (!validateDuplicateMenu(menuNames)) throw new IllegalArgumentException();
+        if (!validateTotalQuantity(totalQuantity)) throw new IllegalArgumentException();
         return true;
     }
 
