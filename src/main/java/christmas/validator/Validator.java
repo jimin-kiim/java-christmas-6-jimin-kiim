@@ -15,6 +15,7 @@ public class Validator {
         if (input != null && input.matches("^[0-9]+$")) {
             return true;
         }
+//        System.out.println("validateIsInt");
         return false;
     }
 
@@ -53,13 +54,16 @@ public class Validator {
         if (isValid) {
             return true;
         }
+//        System.out.println("validateMenuAndQuantity");
         return false;
     }
 
     private static boolean validateMenu(String menu) {
-        if (Arrays.stream(Menu.values()).anyMatch(m -> m.name().equals(menu))) {
+        Menu[] menus = Menu.values();
+        if (Arrays.stream(menus).anyMatch(m -> m.getName().equals(menu))) {
             return true;
         }
+//        System.out.println("validateMenu");
         return false;
     }
 
@@ -72,8 +76,8 @@ public class Validator {
 
     private static boolean validateDuplicateMenu(List<String> menuNames) {
         if (menuNames.size() == menuNames.stream().distinct().count()) {
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
 }
