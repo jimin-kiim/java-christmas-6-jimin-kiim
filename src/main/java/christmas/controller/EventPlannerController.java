@@ -33,8 +33,11 @@ public class EventPlannerController {
     }
 
     private void applyPromotion() {
+        int prePromotionTotal = reservation.getPrePromotionTotal();
+        if (prePromotionTotal < 10000) {
+            return;
+        }
         PromotionManager promotionManager = new PromotionManager();
-
         promotionManager.applyGiftEvent(reservation);
         promotionManager.applyDdayEvent(reservation);
         promotionManager.applyWeekdayEvent(reservation);
