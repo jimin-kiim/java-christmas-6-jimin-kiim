@@ -35,12 +35,11 @@ public class OutputView {
         }
     }
 
-    public static void printPrePromotionTotal(int prePromotionTotal) {
+    public static void printPrePromotionTotal(int amount) {
         print("");
         print(Message.PRE_PROMOTION_TOTAL_TITLE.getMessage());
-        String output = Integer.toString(prePromotionTotal);
-        output = output.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
-        print(output+"원");
+        String outputAmount = separateByThousands(amount);
+        print(outputAmount + "원");
     }
 
     public static void printGiftMenu(OrderItem gift) {
@@ -50,10 +49,9 @@ public class OutputView {
             String name = gift.getName();
             int amount = gift.getAmount();
             print(name + " " + amount +"개");
+            return;
         }
-        if (gift == null) {
-            print("없음");
-        }
+        print("없음");
     }
 
     public static void printPromotionList(List<Promotion> promotionList) {
@@ -63,21 +61,18 @@ public class OutputView {
             for (Promotion promotion: promotionList) {
                 String name = promotion.getName();
                 int amount = promotion.getAmount();
-                String outputAmount = Integer.toString(amount);
-                outputAmount = outputAmount.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
+                String outputAmount = separateByThousands(amount);
                 print(name + ": -" + outputAmount + "원");
             }
+            return;
         }
-        if (promotionList.size() == 0) {
-            print("없음");
-        }
+        print("없음");
     }
 
     public static void printTotalPromotionAmount(int amount) {
         print("");
         print(Message.TOTAL_PROMOTION_AMOUNT_TITLE.getMessage());
-        String outputAmount = Integer.toString(amount);
-        outputAmount = outputAmount.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
+        String outputAmount = separateByThousands(amount);
         if (amount > 0 ) {
             print("-" + outputAmount + "원");
             return;
@@ -88,8 +83,7 @@ public class OutputView {
     public static void printPostPromotionTotal(int amount) {
         print("");
         print(Message.POST_PROMOTION_TOTAL_TITLE.getMessage());
-        String outputAmount = Integer.toString(amount);
-        outputAmount = outputAmount.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
+        String outputAmount = separateByThousands(amount);
         print(outputAmount + "원");
     }
 
@@ -101,5 +95,10 @@ public class OutputView {
             return;
         }
         print(badge);
+    }
+
+    private static String separateByThousands(int amount) {
+        String outputAmount = Integer.toString(amount);
+        return outputAmount.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
     }
 }
