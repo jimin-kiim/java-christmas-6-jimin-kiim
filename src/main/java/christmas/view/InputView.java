@@ -5,6 +5,8 @@ import christmas.domain.VisitDate;
 import christmas.messages.ErrorMessage;
 import christmas.validator.Validator;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
@@ -15,7 +17,7 @@ public class InputView {
         boolean isValid;
         do {
             input = readLine();
-            isValid = Validator.isInt(input);
+            isValid = Validator.validateIsInt(input);
             if (isValid) {
                 isValid = Validator.validateDateRange(Integer.parseInt(input));
             }
@@ -27,6 +29,36 @@ public class InputView {
         return new VisitDate(Integer.parseInt(input));
     }
 
-//    public static void List<OrderItem> getOrder() {
-//    }
+    public static List<OrderItem> getOrder() {
+        String input;
+        boolean isValid;
+        List<OrderItem> orderItemList;
+        do {
+            orderItemList = new ArrayList<>();
+            input = readLine();
+            isValid = Validator.validateOrder(input);
+            if (isValid) {
+                orderItemList = processInput(input);
+            }
+            if (!isValid) {
+                System.out.println(ErrorMessage.INVALID_ORDER.getMessage());
+            }
+        } while (!isValid);
+
+        return orderItemList;
+    }
+
+    private static List<OrderItem> processInput(String input) {
+        List<OrderItem> orderItemList = new ArrayList<>();;
+        List<String> orders = Arrays.asList(input.split("\\s*,\\s*"));
+        for (String order: orders) {
+            List<String> menuAndQuantity = Arrays.asList(order.split("\\s*-\\s*"));
+            String menu = menuAndQuantity.get(0);
+            int quantity = Integer.parseInt(menuAndQuantity.get(1));
+            orderItemList.add(new OrderItem(menu, quantity));
+        }
+        return orderItemList;
+    }
+
+
 }

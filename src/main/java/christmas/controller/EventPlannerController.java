@@ -27,8 +27,8 @@ public class EventPlannerController {
         VisitDate visitDate = InputView.getVisitDate();
         reservation.storeVisitDate(visitDate);
 
-//        OutputView.askOrder();
-//        List<OrderItem> order = InputView.getOrder();
+        OutputView.askOrder();
+        List<OrderItem> order = InputView.getOrder();
 //        reservation.storeOrder(order);
     }
 
