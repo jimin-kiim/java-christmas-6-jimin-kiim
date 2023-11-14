@@ -68,7 +68,7 @@ class ApplicationTest extends NsTest {
     @Test
     void 디데이_이벤트_해당() {
         assertSimpleTest(() -> {
-            run("25", "타파스-1,제로콜라-1");
+            run("25", "시저샐러드-1,제로콜라-1");
             assertThat(output()).contains(
                     "크리스마스 디데이 할인: -3,400원"
             );
