@@ -56,7 +56,8 @@ public class EventPlannerController {
     }
 
     private void showOrderList() {
-
+        List<OrderItem> orderItemList = reservation.getOrderItemList();
+        OutputView.printOrderList(orderItemList);
     }
 
     private void showTotalPriceBeforePromotion() {

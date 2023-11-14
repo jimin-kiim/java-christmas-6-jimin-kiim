@@ -26,6 +26,13 @@ public class OutputView {
     public static void printPromotionViewTitle() {
     }
 
+    public static void printOrderList(List<OrderItem> orderItemList) {
+        print(Message.ORDER_LIST_TITLE.getMessage());
+        for (OrderItem item: orderItemList) {
+            print(item.getName() + " " + item.getAmount() + "개");
+        }
+    }
+
     public static void printPrePromotionTotal(int prePromotionTotal) {
         print(Message.PRE_PROMOTION_TOTAL_TITLE.getMessage());
         String output = Integer.toString(prePromotionTotal);
