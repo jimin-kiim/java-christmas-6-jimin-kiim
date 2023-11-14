@@ -1,5 +1,6 @@
 package christmas.view;
 
+import christmas.domain.OrderItem;
 import christmas.messages.Message;
 
 public class OutputView {
@@ -27,5 +28,17 @@ public class OutputView {
         String output = Integer.toString(prePromotionTotal);
         output = output.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
         print(output+"원");
+    }
+
+    public static void printGiftMenu(OrderItem gift) {
+        print(Message.GIFT_TITLE.getMessage());
+        if (gift != null) {
+            String name = gift.getName();
+            int amount = gift.getAmount();
+            print(name + " " + amount +"개");
+        }
+        if (gift == null) {
+            print("없음");
+        }
     }
 }

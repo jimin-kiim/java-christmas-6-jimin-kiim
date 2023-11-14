@@ -35,7 +35,7 @@ public class EventPlannerController {
     private void applyPromotion() {
         PromotionManager promotionManager = new PromotionManager();
 
-//        promotionManager.applyGiftEvent(reservation);
+        promotionManager.applyGiftEvent(reservation);
 //        promotionManager.applyDdayEvent(reservation);
 //        promotionManager.applyWeekdayEvent(reservation);
 //        promotionManager.applyWeekendEvent(reservation);
@@ -65,7 +65,8 @@ public class EventPlannerController {
     }
 
     private void showGiftMenus() {
-
+        OrderItem gift = reservation.getGift();
+        OutputView.printGiftMenu(gift);
     }
 
     private void showAppliedPromotionEvents() {

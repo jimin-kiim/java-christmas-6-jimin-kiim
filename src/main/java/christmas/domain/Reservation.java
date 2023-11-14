@@ -1,5 +1,6 @@
 package christmas.domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -8,6 +9,10 @@ public class Reservation {
     private VisitDate visitDate;
     private List<OrderItem> orderItemList;
     private int prePromotionTotal = 0;
+    private int postPromotionTotal = 0;
+    private int totalPromotionAmount = 0;
+    private List<Promotion> promotionList;
+    private OrderItem gift = null;
 
     public void storeVisitDate(VisitDate visitDate) {
         this.visitDate = visitDate;
@@ -16,6 +21,7 @@ public class Reservation {
     public void storeOrder(List<OrderItem> orderItemList) {
         this.orderItemList = orderItemList;
         calculatePrePromotionTotal();
+        promotionList = new ArrayList<>();
     }
 
     private void calculatePrePromotionTotal() {
@@ -29,9 +35,25 @@ public class Reservation {
             int price = menu.getPrice();
             prePromotionTotal += price * item.getAmount();
         }
+        postPromotionTotal = prePromotionTotal;
     }
 
     public int getPrePromotionTotal() {
         return prePromotionTotal;
+    }
+
+    public void addAppliedPromotionList(Promotion promotion) {
+        promotionList.add(promotion);
+        int promotionAmount = promotion.getAmount();
+        postPromotionTotal -= promotionAmount;
+        totalPromotionAmount += promotionAmount;
+    }
+
+    public void setGift(OrderItem orderItem) {
+        gift = orderItem;
+    }
+
+    public OrderItem getGift() {
+        return gift;
     }
 }
