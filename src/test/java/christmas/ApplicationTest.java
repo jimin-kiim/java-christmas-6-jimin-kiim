@@ -46,6 +46,26 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void 증정_이벤트_해당() {
+        assertSimpleTest(() -> {
+            run("3", "티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1");
+            assertThat(output()).contains(
+                    "샴페인 1개"
+            );
+        });
+    }
+
+    @Test
+    void 증정_이벤트_해당_없음() {
+        assertSimpleTest(() -> {
+            run("3", "타파스-1,제로콜라-1");
+            assertThat(output()).contains(
+                    "없음"
+            );
+        });
+    }
+
+    @Test
     void 혜택_내역_없음_출력() {
         assertSimpleTest(() -> {
             run("26", "타파스-1,제로콜라-1");
