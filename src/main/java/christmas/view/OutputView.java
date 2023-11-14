@@ -81,4 +81,13 @@ public class OutputView {
         outputAmount = outputAmount.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
         print(outputAmount + "원");
     }
+
+    public static void printBadge(String badge) {
+        print(Message.BADGE_TITLE.getMessage());
+        if (badge == null) {
+            print("없음");
+            return;
+        }
+        print(badge);
+    }
 }

@@ -9,7 +9,8 @@ public enum Message {
     GIFT_TITLE("<증정 메뉴>"),
     PROMOTION_LIST_TITLE("<혜택 내역>"),
     TOTAL_PROMOTION_AMOUNT_TITLE("<총혜택 금액>"),
-    POST_PROMOTION_TOTAL_TITLE("<할인 후 예상 결제 금액>");
+    POST_PROMOTION_TOTAL_TITLE("<할인 후 예상 결제 금액>"),
+    BADGE_TITLE("<12월 이벤트 배지>");
 
     private String message;
 

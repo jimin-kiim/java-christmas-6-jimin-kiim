@@ -87,6 +87,7 @@ public class EventPlannerController {
     }
 
     private void showEventBadges() {
-
+        String badge = reservation.getBadge();
+        OutputView.printBadge(badge);
     }
 }

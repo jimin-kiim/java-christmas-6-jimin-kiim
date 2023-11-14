@@ -16,7 +16,7 @@ public class PromotionManager {
     public void applyGiftEvent(Reservation reservation) {
         int prePromotionTotal = reservation.getPrePromotionTotal();
         if (prePromotionTotal >= 120000) {
-            reservation.addAppliedPromotionList(new Promotion("증정 이벤트", 0));
+            reservation.addAppliedPromotionList(new Promotion("증정 이벤트", 25000, true));
             reservation.setGift(new OrderItem(Menu.CHAMPAGNE.getName(), 1));
         }
     }
@@ -26,7 +26,7 @@ public class PromotionManager {
         if (visitDate <= 25) {
             int promotionAmount = 1000;
             promotionAmount += (visitDate - 1) * 100;
-            reservation.addAppliedPromotionList(new Promotion("크리스마스 디데이 할인", promotionAmount));
+            reservation.addAppliedPromotionList(new Promotion("크리스마스 디데이 할인", promotionAmount, false));
         }
     }
 
@@ -36,7 +36,7 @@ public class PromotionManager {
         if (!weekdays.contains(visitDate) || promotionAmount == 0) {
             return;
         }
-        reservation.addAppliedPromotionList(new Promotion("평일 할인", promotionAmount));
+        reservation.addAppliedPromotionList(new Promotion("평일 할인", promotionAmount, false));
     }
 
     public void applyWeekendEvent(Reservation reservation) {
@@ -45,7 +45,7 @@ public class PromotionManager {
         if (weekdays.contains(visitDate) || promotionAmount == 0) {
             return;
         }
-        reservation.addAppliedPromotionList(new Promotion("주말 할인", promotionAmount));
+        reservation.addAppliedPromotionList(new Promotion("주말 할인", promotionAmount, false));
     }
 
     private int getWeekendWeekdayPromotionAmount(Reservation reservation, String type) {
@@ -67,7 +67,7 @@ public class PromotionManager {
     public void applyStarredDayEvent(Reservation reservation) {
         int visitDate = reservation.getVisitDate();
         if (starredDays.contains(visitDate)) {
-            reservation.addAppliedPromotionList(new Promotion("특별 할인", 1000));
+            reservation.addAppliedPromotionList(new Promotion("특별 할인", 1000, false));
         }
     }
 

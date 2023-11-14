@@ -46,8 +46,9 @@ public class Reservation {
     public void addAppliedPromotionList(Promotion promotion) {
         promotionList.add(promotion);
         int promotionAmount = promotion.getAmount();
-        postPromotionTotal -= promotionAmount;
         totalPromotionAmount += promotionAmount;
+        if (promotion.getIsGift()) return;
+        postPromotionTotal -= promotionAmount;
     }
 
     public void setGift(OrderItem orderItem) {
@@ -80,5 +81,9 @@ public class Reservation {
 
     public int getPostPromotionTotal() {
         return postPromotionTotal;
+    }
+
+    public String getBadge() {
+        return badge;
     }
 }
