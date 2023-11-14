@@ -64,4 +64,8 @@ public class Reservation {
     public List<Promotion> getPromotionList() {
         return promotionList;
     }
+
+    public List<OrderItem> getOrderItemList() {
+        return orderItemList;
+    }
 }
