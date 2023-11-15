@@ -27,6 +27,7 @@ public class Orders {
             totalQuantity += Integer.parseInt(menuAndQuantity.get(1));
         }
         validateDuplicateMenu(menuNames);
+        validateNotJustBeverages(menuNames);
         validateTotalQuantity(totalQuantity);
     }
 
@@ -34,6 +35,17 @@ public class Orders {
         if (menuNames.size() != menuNames.stream().distinct().count()) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private void validateNotJustBeverages(List<String> menuNames) {
+        List<String> beverageNames = Arrays.stream(Menu.values())
+                .filter(m -> m.getType().equals("음료"))
+                .map(m -> m.getName())
+                .toList();
+        for (String menu: menuNames) {
+            if (!beverageNames.contains(menu)) return;
+        }
+        throw new IllegalArgumentException();
     }
 
     private void validateTotalQuantity(int totalQuantity) {
