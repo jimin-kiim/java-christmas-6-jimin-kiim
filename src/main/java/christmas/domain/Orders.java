@@ -26,6 +26,10 @@ public class Orders {
             menuNames.add(menuAndQuantity.get(0));
             totalQuantity += Integer.parseInt(menuAndQuantity.get(1));
         }
+        validateOrders(menuNames, totalQuantity);
+    }
+
+    private void validateOrders(List<String> menuNames, int totalQuantity) {
         validateDuplicateMenu(menuNames);
         validateNotJustBeverages(menuNames);
         validateTotalQuantity(totalQuantity);

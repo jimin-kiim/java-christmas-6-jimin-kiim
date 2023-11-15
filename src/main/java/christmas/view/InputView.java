@@ -18,7 +18,7 @@ public class InputView {
     }
 
     public static Orders getOrder() {
-        while(true){
+        while(true) {
             try {
                 return new Orders(readLine());
             } catch (IllegalArgumentException e) {

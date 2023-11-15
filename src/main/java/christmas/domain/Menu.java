@@ -9,8 +9,10 @@ public enum Menu {
     RIB("바비큐립", 54000, "메인"),
     SEAFOOD_PASTA("해산물파스타", 35000, "메인"),
     CHRISTMAS_PASTA("크리스마스파스타", 25000,  "메인"),
+
     CAKE("초코케이크", 15000,  "디저트"),
     ICE_CREAM("아이스크림", 5000,  "디저트"),
+
     COKE("제로콜라", 3000, "음료"),
     WINE("레드와인", 60000,  "음료"),
     CHAMPAGNE("샴페인", 25000, "음료");
@@ -18,7 +20,6 @@ public enum Menu {
     private String name;
     private int price;
     private String type;
-
 
     Menu (String name, int price, String type) {
         this.name = name;
