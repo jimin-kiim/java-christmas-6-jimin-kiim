@@ -31,7 +31,7 @@ public class OutputView {
         print("");
         print(Message.ORDER_LIST_TITLE.getMessage());
         for (OrderItem item: orderItemList) {
-            print(item.getName() + " " + item.getAmount() + "개");
+            print(item.getName() + " " + item.getQuantity() + "개");
         }
     }
 
@@ -47,7 +47,7 @@ public class OutputView {
         print(Message.GIFT_TITLE.getMessage());
         if (gift != null) {
             String name = gift.getName();
-            int amount = gift.getAmount();
+            int amount = gift.getQuantity();
             print(name + " " + amount +"개");
             return;
         }

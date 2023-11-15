@@ -1,19 +1,43 @@
 package christmas.domain;
 
+import java.util.Arrays;
+
 public class OrderItem {
     String name;
-    int amount;
+    int quantity;
 
-    public OrderItem(String name, int amount) {
+    public OrderItem(String name, String quantity) {
         this.name = name;
-        this.amount = amount;
+        validateMenu(name);
+        this.quantity = validateIsInt(quantity);
+        validateQuantityRange(this.quantity);
     }
 
     public String getName() {
         return name;
     }
 
-    public int getAmount() {
-        return amount;
+    public int getQuantity() {
+        return quantity;
+    }
+
+    private int validateIsInt(String input) {
+        if (input == null || !input.matches("^[0-9]+$")) {
+            throw new IllegalArgumentException();
+        }
+        return Integer.parseInt(input);
+    }
+
+    private void validateMenu(String menu) {
+        Menu[] menus = Menu.values();
+        if (!Arrays.stream(menus).anyMatch(m -> m.getName().equals(menu))) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateQuantityRange(int quantity) {
+        if (quantity <= 0) {
+            throw new IllegalArgumentException();
+        }
     }
 }

@@ -3,7 +3,6 @@ package christmas.domain;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class PromotionManager {
     private List<Integer> weekdays = new ArrayList<>(Arrays.asList(3, 4, 5, 6, 7,
@@ -17,7 +16,7 @@ public class PromotionManager {
         int prePromotionTotal = reservation.getPrePromotionTotal();
         if (prePromotionTotal >= 120000) {
             reservation.addAppliedPromotionList(new Promotion("증정 이벤트", 25000, true));
-            reservation.setGift(new OrderItem(Menu.CHAMPAGNE.getName(), 1));
+            reservation.setGift(new OrderItem(Menu.CHAMPAGNE.getName(), "1"));
         }
     }
 
@@ -58,7 +57,7 @@ public class PromotionManager {
 
         for (int i = 0; i < orderItemList.size(); i++) {
             if (mainNames.contains(orderItemList.get(i).getName())) {
-                promotionAmount += 2023 * orderItemList.get(i).getAmount();
+                promotionAmount += 2023 * orderItemList.get(i).getQuantity();
             }
         }
         return promotionAmount;

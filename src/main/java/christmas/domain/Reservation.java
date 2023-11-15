@@ -3,7 +3,6 @@ package christmas.domain;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 public class Reservation {
     private int visitDate;
@@ -27,14 +26,13 @@ public class Reservation {
 
     private void calculatePrePromotionTotal() {
         for (OrderItem item: orderItemList) {
-//            System.out.println(item.getName() + item.getAmount());
             Menu menu = Arrays.stream(Menu.values())
                     .filter(m -> m.getName().equals(item.getName()))
                     .findAny()
                     .get();
 
             int price = menu.getPrice();
-            prePromotionTotal += price * item.getAmount();
+            prePromotionTotal += price * item.getQuantity();
         }
         postPromotionTotal = prePromotionTotal;
     }

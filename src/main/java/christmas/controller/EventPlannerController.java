@@ -1,9 +1,6 @@
 package christmas.controller;
 
-import christmas.domain.OrderItem;
-import christmas.domain.Promotion;
-import christmas.domain.PromotionManager;
-import christmas.domain.Reservation;
+import christmas.domain.*;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 
@@ -24,12 +21,12 @@ public class EventPlannerController {
         OutputView.printWelcomingMessage();
 
         OutputView.askVisitDate();
-        int visitDate = InputView.getVisitDate();
-        reservation.storeVisitDate(visitDate);
+        VisitDate visitDate = InputView.getVisitDate();
+        reservation.storeVisitDate(visitDate.getValue());
 
         OutputView.askOrder();
-        List<OrderItem> orderItemList = InputView.getOrder();
-        reservation.storeOrder(orderItemList);
+        Orders orders = InputView.getOrder();
+        reservation.storeOrder(orders.getValue());
     }
 
     private void applyPromotion() {
