@@ -72,16 +72,16 @@ public class PromotionManager {
 
     public void applyBadgeEvent(Reservation reservation) {
         int totalPromotionAmount = reservation.getTotalPromotionAmount();
-        if (totalPromotionAmount >= 20000) {
-            reservation.setBadge("산타");
+        if (totalPromotionAmount >= Badge.FIRST.getAmount()) {
+            reservation.setBadge(Badge.FIRST.getName());
             return;
         }
-        if (totalPromotionAmount >= 10000) {
-            reservation.setBadge("트리");
+        if (totalPromotionAmount >= Badge.SECOND.getAmount()) {
+            reservation.setBadge(Badge.SECOND.getName());
             return;
         }
-        if (totalPromotionAmount >= 5000) {
-            reservation.setBadge("별");
+        if (totalPromotionAmount >= Badge.THIRD.getAmount()) {
+            reservation.setBadge(Badge.THIRD.getName());
         }
     }
 }
