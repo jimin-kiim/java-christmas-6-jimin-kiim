@@ -7,10 +7,12 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Orders {
+    private static final String ORDERS_SPLIT_REGEX = "\\s*,\\s*";
+    private static final String ORDER_MENU_QUANTITY_SPLIT_REGEX = "\\s*-\\s*";
     private List<OrderItem> orderItemList;
 
     public Orders(String input) {
-        List<String> orders = Arrays.asList(input.split("\\s*,\\s*"));
+        List<String> orders = Arrays.asList(input.split(ORDERS_SPLIT_REGEX));
         parseByOrder(orders);
     }
 
@@ -19,7 +21,7 @@ public class Orders {
         orderItemList = new ArrayList<>();
         int totalQuantity = 0;
         for (String order: orders) {
-            List<String> menuAndQuantity = Arrays.asList(order.split("\\s*-\\s*"));
+            List<String> menuAndQuantity = Arrays.asList(order.split(ORDER_MENU_QUANTITY_SPLIT_REGEX));
             try {
                 orderItemList.add(new OrderItem(menuAndQuantity.get(0), menuAndQuantity.get(1)));
             } catch (Exception e) {

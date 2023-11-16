@@ -11,6 +11,7 @@ public class OutputView {
     private static final String CURRENCY_UNIT = "원";
     private static final String COUNTING_UNIT = "개";
     private static final String NEGATIVE_SIGN = "-";
+    private static final String FIND_THREE_DIGIT_NUMBER_REGEX = "\\B(?=(\\d{3})+(?!\\d))";
 
     private static void print(String message) {
         System.out.println(message);
@@ -105,6 +106,6 @@ public class OutputView {
 
     private static String separateByThousands(int amount) {
         String outputAmount = Integer.toString(amount);
-        return outputAmount.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
+        return outputAmount.replaceAll(FIND_THREE_DIGIT_NUMBER_REGEX, ",");
     }
 }

@@ -7,6 +7,7 @@ import java.util.Arrays;
 public class OrderItem {
     String name;
     int quantity;
+    private static final String IS_DIGIT_REGEX = "^[0-9]+$";
 
     public OrderItem(String name, String quantity) {
         this.name = name;
@@ -24,7 +25,7 @@ public class OrderItem {
     }
 
     private int validateIsInt(String input) {
-        if (input == null || !input.matches("^[0-9]+$")) {
+        if (input == null || !input.matches(IS_DIGIT_REGEX)) {
             throw new IllegalArgumentException();
         }
         return Integer.parseInt(input);
