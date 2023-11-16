@@ -9,6 +9,7 @@ import java.util.List;
 public class OutputView {
     private static final String NONE = "없음";
     private static final String CURRENCY_UNIT = "원";
+    private static final String NEGATIVE_SIGN = "-";
 
     private static void print(String message) {
         System.out.println(message);
@@ -66,7 +67,7 @@ public class OutputView {
                 String name = promotion.getName();
                 int amount = promotion.getAmount();
                 String outputAmount = separateByThousands(amount);
-                print(name + ": -" + outputAmount + CURRENCY_UNIT);
+                print(name + ": " + NEGATIVE_SIGN + outputAmount + CURRENCY_UNIT);
             }
             return;
         }
@@ -78,7 +79,7 @@ public class OutputView {
         print(Message.TOTAL_PROMOTION_AMOUNT_TITLE.getMessage());
         String outputAmount = separateByThousands(amount);
         if (amount > 0 ) {
-            print("-" + outputAmount + CURRENCY_UNIT);
+            print(NEGATIVE_SIGN + outputAmount + CURRENCY_UNIT);
             return;
         }
         print(outputAmount + CURRENCY_UNIT);
