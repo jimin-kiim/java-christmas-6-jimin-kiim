@@ -1,4 +1,4 @@
-package christmas.domain;
+package christmas.constants;
 
 public enum Badge {
     FIRST("산타", 20000),

@@ -1,50 +1,47 @@
 package christmas.domain;
 
+import christmas.constants.Badge;
+import christmas.constants.Menu;
+import christmas.constants.MenuType;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class PromotionManager {
-    private List<Integer> weekdays = new ArrayList<>(Arrays.asList(3, 4, 5, 6, 7,
-            10, 11, 12, 13, 14,
-            17, 18, 19, 20, 21,
-            24, 25, 26, 27, 28,
-            31));
-    private List<Integer> starredDays = new ArrayList<>(Arrays.asList(3, 10, 17, 24, 31));
-
+public class PromotionManager implements PromotionManagerInterface {
     public void applyGiftEvent(Reservation reservation) {
         int prePromotionTotal = reservation.getPrePromotionTotal();
-        if (prePromotionTotal >= 120000) {
-            reservation.addAppliedPromotionList(new Promotion("증정 이벤트", 25000, true));
-            reservation.setGift(new OrderItem(Menu.CHAMPAGNE.getName(), "1"));
+        if (prePromotionTotal >= GIFT_EVENT_THRESHOLD_VALUE) {
+            reservation.addAppliedPromotionList(new Promotion(GIFT_EVENT_TITLE, GIFT_EVENT_DISCOUNT_VALUE, GIFT_EVENT_EVENT_IS_GIVING_GIFT));
+            reservation.setGift(new OrderItem(GIFT_TITLE, GIFT_QUANTITY));
         }
     }
 
     public void applyDdayEvent(Reservation reservation) {
         int visitDate = reservation.getVisitDate();
-        if (visitDate <= 25) {
-            int promotionAmount = 1000;
-            promotionAmount += (visitDate - 1) * 100;
-            reservation.addAppliedPromotionList(new Promotion("크리스마스 디데이 할인", promotionAmount, false));
+        if (visitDate <= DDAY_EVENT_THRESHOLD_VALUE) {
+            int promotionAmount = DDAY_EVENT_DISCOUNT_BASE_VALUE;
+            promotionAmount += (visitDate - DDAY_EVENT_INTERVAL) * DDAY_EVENT_DISCOUNT_WEIGHT;
+            reservation.addAppliedPromotionList(new Promotion(DDAY_EVENT_TITLE, promotionAmount, DDAY_EVENT_IS_GIVING_GIFT));
         }
     }
 
     public void applyWeekdayEvent(Reservation reservation) {
         int visitDate = reservation.getVisitDate();
-        int promotionAmount = getWeekendWeekdayPromotionAmount(reservation, "디저트");
-        if (!weekdays.contains(visitDate) || promotionAmount == 0) {
+        int promotionAmount = getWeekendWeekdayPromotionAmount(reservation, MenuType.DESSERT.getValue());
+        if (!WEEKDAYS.contains(visitDate) || promotionAmount == 0) {
             return;
         }
-        reservation.addAppliedPromotionList(new Promotion("평일 할인", promotionAmount, false));
+        reservation.addAppliedPromotionList(new Promotion(WEEKDAY_EVENT_TITLE, promotionAmount, WEEKDAY_EVENT_IS_GIVING_GIFT));
     }
 
     public void applyWeekendEvent(Reservation reservation) {
         int visitDate = reservation.getVisitDate();
-        int promotionAmount = getWeekendWeekdayPromotionAmount(reservation, "메인");
-        if (weekdays.contains(visitDate) || promotionAmount == 0) {
+        int promotionAmount = getWeekendWeekdayPromotionAmount(reservation, MenuType.MAIN.getValue());
+        if (WEEKDAYS.contains(visitDate) || promotionAmount == 0) {
             return;
         }
-        reservation.addAppliedPromotionList(new Promotion("주말 할인", promotionAmount, false));
+        reservation.addAppliedPromotionList(new Promotion(WEEKEND_EVENT_TITLE, promotionAmount, WEEKEND_EVENT_IS_GIVING_GIFT));
     }
 
     private int getWeekendWeekdayPromotionAmount(Reservation reservation, String type) {
@@ -57,7 +54,7 @@ public class PromotionManager {
 
         for (int i = 0; i < orderItemList.size(); i++) {
             if (mainNames.contains(orderItemList.get(i).getName())) {
-                promotionAmount += 2023 * orderItemList.get(i).getQuantity();
+                promotionAmount += WEEKDAY_WEEKEND_EVENT_DISCOUNT_WEIGHT * orderItemList.get(i).getQuantity();
             }
         }
         return promotionAmount;
@@ -65,8 +62,8 @@ public class PromotionManager {
 
     public void applyStarredDayEvent(Reservation reservation) {
         int visitDate = reservation.getVisitDate();
-        if (starredDays.contains(visitDate)) {
-            reservation.addAppliedPromotionList(new Promotion("특별 할인", 1000, false));
+        if (STARRED_DAYS.contains(visitDate)) {
+            reservation.addAppliedPromotionList(new Promotion(STARRED_DAY_EVENT_TITLE, STARRED_DAY_EVENT_DISCOUNT_VALUE, STARRED_DAY_EVENT_IS_GIVING_GIFT));
         }
     }
 

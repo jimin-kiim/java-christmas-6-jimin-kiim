@@ -7,9 +7,16 @@ import christmas.messages.Message;
 import java.util.List;
 
 public class OutputView {
+    private static final String NONE = "없음";
+    private static final String CURRENCY_UNIT = "원";
+    private static final String COUNTING_UNIT = "개";
+    private static final String NEGATIVE_SIGN = "-";
+    private static final String FIND_THREE_DIGIT_NUMBER_REGEX = "\\B(?=(\\d{3})+(?!\\d))";
+
     private static void print(String message) {
         System.out.println(message);
     }
+    private static void printBlankLine () {print("");}
 
     public static void printWelcomingMessage() {
         print(Message.WELCOME_MESSAGE.getMessage());
@@ -28,77 +35,77 @@ public class OutputView {
     }
 
     public static void printOrderList(List<OrderItem> orderItemList) {
-        print("");
+        printBlankLine();
         print(Message.ORDER_LIST_TITLE.getMessage());
         for (OrderItem item: orderItemList) {
-            print(item.getName() + " " + item.getQuantity() + "개");
+            print(item.getName() + " " + item.getQuantity() + COUNTING_UNIT);
         }
     }
 
     public static void printPrePromotionTotal(int amount) {
-        print("");
+        printBlankLine();
         print(Message.PRE_PROMOTION_TOTAL_TITLE.getMessage());
         String outputAmount = separateByThousands(amount);
-        print(outputAmount + "원");
+        print(outputAmount + CURRENCY_UNIT);
     }
 
     public static void printGiftMenu(OrderItem gift) {
-        print("");
+        printBlankLine();
         print(Message.GIFT_TITLE.getMessage());
         if (gift != null) {
             String name = gift.getName();
             int amount = gift.getQuantity();
-            print(name + " " + amount +"개");
+            print(name + " " + amount + COUNTING_UNIT);
             return;
         }
-        print("없음");
+        print(NONE);
     }
 
     public static void printPromotionList(List<Promotion> promotionList) {
-        print("");
+        printBlankLine();
         print(Message.PROMOTION_LIST_TITLE.getMessage());
         if (promotionList.size() != 0) {
             for (Promotion promotion: promotionList) {
                 String name = promotion.getName();
                 int amount = promotion.getAmount();
                 String outputAmount = separateByThousands(amount);
-                print(name + ": -" + outputAmount + "원");
+                print(name + ": " + NEGATIVE_SIGN + outputAmount + CURRENCY_UNIT);
             }
             return;
         }
-        print("없음");
+        print(NONE);
     }
 
     public static void printTotalPromotionAmount(int amount) {
-        print("");
+        printBlankLine();
         print(Message.TOTAL_PROMOTION_AMOUNT_TITLE.getMessage());
         String outputAmount = separateByThousands(amount);
         if (amount > 0 ) {
-            print("-" + outputAmount + "원");
+            print(NEGATIVE_SIGN + outputAmount + CURRENCY_UNIT);
             return;
         }
-        print(outputAmount + "원");
+        print(outputAmount + CURRENCY_UNIT);
     }
 
     public static void printPostPromotionTotal(int amount) {
-        print("");
+        printBlankLine();
         print(Message.POST_PROMOTION_TOTAL_TITLE.getMessage());
         String outputAmount = separateByThousands(amount);
-        print(outputAmount + "원");
+        print(outputAmount + CURRENCY_UNIT);
     }
 
     public static void printBadge(String badge) {
-        print("");
+        printBlankLine();
         print(Message.BADGE_TITLE.getMessage());
-        if (badge == null) {
-            print("없음");
+        if (badge != null) {
+            print(badge);
             return;
         }
-        print(badge);
+        print(NONE);
     }
 
     private static String separateByThousands(int amount) {
         String outputAmount = Integer.toString(amount);
-        return outputAmount.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
+        return outputAmount.replaceAll(FIND_THREE_DIGIT_NUMBER_REGEX, ",");
     }
 }

@@ -8,6 +8,7 @@ import java.util.List;
 
 public class EventPlannerController {
     Reservation reservation;
+    private static final int PROMOTION_THRESHOLD = 10000;
 
     public void startProgram() {
         getReservation();
@@ -31,7 +32,7 @@ public class EventPlannerController {
 
     private void applyPromotion() {
         int prePromotionTotal = reservation.getPrePromotionTotal();
-        if (prePromotionTotal < 10000) {
+        if (prePromotionTotal < PROMOTION_THRESHOLD) {
             return;
         }
         PromotionManager promotionManager = new PromotionManager();
