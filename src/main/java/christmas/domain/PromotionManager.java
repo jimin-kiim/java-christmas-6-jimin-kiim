@@ -2,6 +2,7 @@ package christmas.domain;
 
 import christmas.constants.Badge;
 import christmas.constants.Menu;
+import christmas.constants.MenuType;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,7 +35,7 @@ public class PromotionManager {
 
     public void applyWeekdayEvent(Reservation reservation) {
         int visitDate = reservation.getVisitDate();
-        int promotionAmount = getWeekendWeekdayPromotionAmount(reservation, "디저트");
+        int promotionAmount = getWeekendWeekdayPromotionAmount(reservation, MenuType.DESSERT.getValue());
         if (!weekdays.contains(visitDate) || promotionAmount == 0) {
             return;
         }
@@ -43,7 +44,7 @@ public class PromotionManager {
 
     public void applyWeekendEvent(Reservation reservation) {
         int visitDate = reservation.getVisitDate();
-        int promotionAmount = getWeekendWeekdayPromotionAmount(reservation, "메인");
+        int promotionAmount = getWeekendWeekdayPromotionAmount(reservation, MenuType.MAIN.getValue());
         if (weekdays.contains(visitDate) || promotionAmount == 0) {
             return;
         }
