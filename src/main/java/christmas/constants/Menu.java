@@ -1,4 +1,4 @@
-package christmas.domain;
+package christmas.constants;
 
 public enum Menu {
     SOUP("양송이수프", 6000, "에피타이저"),
