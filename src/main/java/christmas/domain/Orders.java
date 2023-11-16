@@ -1,6 +1,7 @@
 package christmas.domain;
 
 import christmas.constants.Menu;
+import christmas.constants.MenuType;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,6 +10,7 @@ import java.util.List;
 public class Orders {
     private static final String ORDERS_SPLIT_REGEX = "\\s*,\\s*";
     private static final String ORDER_MENU_QUANTITY_SPLIT_REGEX = "\\s*-\\s*";
+    private static final int ORDER_QUANTITY_MAX_LIMIT = 20;
     private List<OrderItem> orderItemList;
 
     public Orders(String input) {
@@ -47,7 +49,7 @@ public class Orders {
 
     private void validateNotJustBeverages(List<String> menuNames) {
         List<String> beverageNames = Arrays.stream(Menu.values())
-                .filter(m -> m.getType().equals("음료"))
+                .filter(m -> m.getType().equals(MenuType.BEVERAGE.getValue()))
                 .map(m -> m.getName())
                 .toList();
         for (String menu: menuNames) {
@@ -57,7 +59,7 @@ public class Orders {
     }
 
     private void validateTotalQuantity(int totalQuantity) {
-        if (totalQuantity > 20) throw new IllegalArgumentException();
+        if (totalQuantity > ORDER_QUANTITY_MAX_LIMIT) throw new IllegalArgumentException();
     }
 
     public List<OrderItem> getValue() {
