@@ -9,6 +9,7 @@ import java.util.List;
 public class OutputView {
     private static final String NONE = "없음";
     private static final String CURRENCY_UNIT = "원";
+    private static final String COUNTING_UNIT = "개";
     private static final String NEGATIVE_SIGN = "-";
 
     private static void print(String message) {
@@ -36,7 +37,7 @@ public class OutputView {
         printBlankLine();
         print(Message.ORDER_LIST_TITLE.getMessage());
         for (OrderItem item: orderItemList) {
-            print(item.getName() + " " + item.getQuantity() + "개");
+            print(item.getName() + " " + item.getQuantity() + COUNTING_UNIT);
         }
     }
 
@@ -53,7 +54,7 @@ public class OutputView {
         if (gift != null) {
             String name = gift.getName();
             int amount = gift.getQuantity();
-            print(name + " " + amount +"개");
+            print(name + " " + amount + COUNTING_UNIT);
             return;
         }
         print(NONE);
