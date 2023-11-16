@@ -7,6 +7,7 @@ import christmas.messages.Message;
 import java.util.List;
 
 public class OutputView {
+    private static final String NONE = "없음";
     private static void print(String message) {
         System.out.println(message);
     }
@@ -66,7 +67,7 @@ public class OutputView {
             }
             return;
         }
-        print("없음");
+        print(NONE);
     }
 
     public static void printTotalPromotionAmount(int amount) {
@@ -90,11 +91,11 @@ public class OutputView {
     public static void printBadge(String badge) {
         print("");
         print(Message.BADGE_TITLE.getMessage());
-        if (badge == null) {
-            print("없음");
+        if (badge != null) {
+            print(badge);
             return;
         }
-        print(badge);
+        print(NONE);
     }
 
     private static String separateByThousands(int amount) {
