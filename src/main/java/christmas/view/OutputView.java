@@ -13,6 +13,7 @@ public class OutputView {
     private static void print(String message) {
         System.out.println(message);
     }
+    private static void printBlankLine () {print("");}
 
     public static void printWelcomingMessage() {
         print(Message.WELCOME_MESSAGE.getMessage());
@@ -31,7 +32,7 @@ public class OutputView {
     }
 
     public static void printOrderList(List<OrderItem> orderItemList) {
-        print("");
+        printBlankLine();
         print(Message.ORDER_LIST_TITLE.getMessage());
         for (OrderItem item: orderItemList) {
             print(item.getName() + " " + item.getQuantity() + "개");
@@ -39,14 +40,14 @@ public class OutputView {
     }
 
     public static void printPrePromotionTotal(int amount) {
-        print("");
+        printBlankLine();
         print(Message.PRE_PROMOTION_TOTAL_TITLE.getMessage());
         String outputAmount = separateByThousands(amount);
         print(outputAmount + CURRENCY_UNIT);
     }
 
     public static void printGiftMenu(OrderItem gift) {
-        print("");
+        printBlankLine();
         print(Message.GIFT_TITLE.getMessage());
         if (gift != null) {
             String name = gift.getName();
@@ -58,7 +59,7 @@ public class OutputView {
     }
 
     public static void printPromotionList(List<Promotion> promotionList) {
-        print("");
+        printBlankLine();
         print(Message.PROMOTION_LIST_TITLE.getMessage());
         if (promotionList.size() != 0) {
             for (Promotion promotion: promotionList) {
@@ -73,7 +74,7 @@ public class OutputView {
     }
 
     public static void printTotalPromotionAmount(int amount) {
-        print("");
+        printBlankLine();
         print(Message.TOTAL_PROMOTION_AMOUNT_TITLE.getMessage());
         String outputAmount = separateByThousands(amount);
         if (amount > 0 ) {
@@ -84,14 +85,14 @@ public class OutputView {
     }
 
     public static void printPostPromotionTotal(int amount) {
-        print("");
+        printBlankLine();
         print(Message.POST_PROMOTION_TOTAL_TITLE.getMessage());
         String outputAmount = separateByThousands(amount);
         print(outputAmount + CURRENCY_UNIT);
     }
 
     public static void printBadge(String badge) {
-        print("");
+        printBlankLine();
         print(Message.BADGE_TITLE.getMessage());
         if (badge != null) {
             print(badge);
